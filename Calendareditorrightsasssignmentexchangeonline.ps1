@@ -4,7 +4,7 @@ function Exchange-CalendarShare
 {
     param($user)
     connect-exchangeonline
-    It then pulls an array of all users and everyone in the company gets editor rights
+    #It pulls an array of all users and everyone in the company gets editor rights to the specified user's calendar
     $Mailboxes= (Get-mailbox -resultsize unlimited)
     foreach ($mailbox in $mailboxes){
         add-mailboxfolderpermission -identity $user":\Calendar" -user $mailbox.identity -accessrights editor
@@ -14,4 +14,4 @@ function Exchange-CalendarShare
         Add-MailboxFolderPermission -identity $Mailbox":\Calendar" -user $user -AccessRights editor
     }
 }
-Exchange-CalendarShare
+Exchange-CalendarShare -user email@example.com
